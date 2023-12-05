@@ -1,0 +1,22 @@
+---
+- name: Install MySQL and OpenJDK on localhost
+  hosts: default
+  become: yes
+
+  tasks:
+    - name: Update apt package cache (for Debian/Ubuntu)
+      apt:
+        update_cache: yes
+      when: ansible_os_family == 'Debian'
+
+    - name: Install MySQL server
+      package:
+        name: mysql-server
+        state: present
+      when: ansible_os_family == 'Debian' or ansible_os_family == 'RedHat'
+
+    - name: Install OpenJDK
+      package:
+        name: openjdk-11-jdk  # Adjust version as needed
+        state: present
+      when: ansible_os_family == 'Debian' or ansible_os_family == 'RedHat'
