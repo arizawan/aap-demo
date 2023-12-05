@@ -1,6 +1,6 @@
 ---
 - name: Install MySQL and OpenJDK on localhost
-  hosts: default
+  hosts: all
   become: yes
 
   tasks:
